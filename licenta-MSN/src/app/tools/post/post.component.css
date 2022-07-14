@@ -1,0 +1,14 @@
+.action-item {
+    margin-left: .5em;
+    cursor: pointer;
+}
+
+#post-card {
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+
+.clickable:hover {
+    cursor: pointer;
+    font-weight: bold;
+}

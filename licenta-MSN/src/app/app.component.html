@@ -1,0 +1,36 @@
+<div id= "nav-bar">
+  <div id = "nav-bar-content">
+    <div id = "nav-bar-left">
+      <div fxLayout="row" fxLayoutAlign="start center" style="font-size: 1.5em" class="nav-bar-items">
+        <div (click)="onNavigateTo('postfeed')">
+          Medical Social Network
+        </div>
+        <mat-form-field [formGroup]="formGroup" class="search-form">
+          <input type="text"
+          placeholder="Search"
+          matInput
+          formControlName="searchFormControl"
+          [matAutocomplete]="auto"
+          class="search-input">
+          <mat-autocomplete #auto class="search-input" matInput>
+            <mat-option *ngFor="let user of usersFound" [value]="user.publicName" (click)="goToProfile(user)">
+              {{user.publicName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+    <div id = "nav-bar-right">
+      <div *ngIf="!loggedIn()" (click)="onLoginClick()" class="nav-bar-items">Login</div>
+      <div *ngIf="loggedIn() && userHasProfile"  class="nav-bar-items" (click)="goToProfile(currentProfile)">
+        Hello Dr. {{getUsername()}}
+      </div>
+      <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="nav-bar-items">Logout</div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
+<app-profile [show]="loggedIn() && !userHasProfile"></app-profile>

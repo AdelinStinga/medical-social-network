@@ -1,0 +1,16 @@
+<mat-card id="post-card">
+    <mat-card-header>
+        <mat-card-title (click)="onNavigateToUser()" class="clickable">{{creatorName}}</mat-card-title>
+        <mat-card-subtitle>{{creatorDescription}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        {{postData?.comment}}
+    </mat-card-content>
+    <img mat-card-image src="{{postData?.imageUrl}}">
+    
+    <mat-card-actions>
+        <mat-icon (click)="onLike()" class="action-item" color="warn">{{likedByUser() ? "favorite" : "favorite_border"}}</mat-icon>
+        <mat-icon  (click)="onReplyClick()" class="action-item" color="warn">chat_buble_outline</mat-icon>
+        <mat-icon *ngIf="currentUserId == userId || !userId" (click)="onDeleteClick()" class="action-item" color="warn">delete</mat-icon> 
+    </mat-card-actions>
+</mat-card>
